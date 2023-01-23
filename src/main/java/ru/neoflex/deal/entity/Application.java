@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import ru.neoflex.deal.data.jsonb.LoanOfferJsonb;
 import ru.neoflex.deal.data.jsonb.StatusHistoryJsonb;

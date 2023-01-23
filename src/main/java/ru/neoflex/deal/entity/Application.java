@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import ru.neoflex.deal.data.jsonb.LoanOfferJsonb;
 import ru.neoflex.deal.data.jsonb.StatusHistoryJsonb;
@@ -20,10 +19,12 @@ import java.sql.Timestamp;
 public class Application {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "application_seq")
+    @SequenceGenerator(name = "application_seq",
+            sequenceName = "application_seq", allocationSize = 1)
     @Column(name = "application_id")
-    private String applicationId;
+    private Long applicationId;
 
     @OneToOne
     @JoinColumn(name = "client_id")

@@ -1,6 +1,6 @@
 create table passport
 (
-    passport_id  bigint primary key,
+    passport_id  bigint,
     series       varchar,
     "number"     varchar,
     issue_branch varchar,
@@ -8,7 +8,7 @@ create table passport
 );
 create table employment
 (
-    employment_id           bigint primary key,
+    employment_id           bigint,
     status                  varchar,
     employer_inn            varchar,
     salary                  decimal,

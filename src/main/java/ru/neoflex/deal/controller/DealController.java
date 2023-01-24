@@ -22,6 +22,7 @@ public class DealController {
 
     @PutMapping(value = "/offer")
     public void updateApplication(@RequestBody LoanOfferDTO loanOfferDTO){
+        dealService.updateApplication(loanOfferDTO);
     }
 
     @PutMapping(value = "/calculate/{applicationId}")

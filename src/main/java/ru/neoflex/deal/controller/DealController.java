@@ -1,10 +1,7 @@
 package ru.neoflex.deal.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.neoflex.deal.data.dto.LoanApplicationRequestDTO;
 import ru.neoflex.deal.data.dto.LoanOfferDTO;
 import ru.neoflex.deal.service.DealService;
@@ -21,5 +18,13 @@ public class DealController {
     @PostMapping(value = "/application")
     public List<LoanOfferDTO> insertClient(@RequestBody LoanApplicationRequestDTO loanApplicationRequestDTO) {
         return dealService.handleLoanRequest(loanApplicationRequestDTO);
+    }
+
+    @PutMapping(value = "/offer")
+    public void updateApplication(@RequestBody LoanOfferDTO loanOfferDTO){
+    }
+
+    @PutMapping(value = "/calculate/{applicationId}")
+    public void calculateRequest(@PathVariable Long applicationId){
     }
 }

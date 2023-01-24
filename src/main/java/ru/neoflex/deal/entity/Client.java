@@ -23,7 +23,7 @@ public class Client {
     @SequenceGenerator(name = "client_seq",
             sequenceName = "client_seq", allocationSize = 1)
     @Column(name = "client_id")
-    private Long clientID;
+    private Long clientId;
 
     @Column(name = "last_name")
     private String lastName;

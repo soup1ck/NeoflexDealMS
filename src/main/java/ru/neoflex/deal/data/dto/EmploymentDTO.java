@@ -2,6 +2,8 @@ package ru.neoflex.deal.data.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import ru.neoflex.deal.data.enums.EmploymentPosition;
+import ru.neoflex.deal.data.enums.EmploymentStatus;
 
 import java.math.BigDecimal;
 

@@ -52,7 +52,7 @@ create table status_history
 );
 create table application
 (
-    application_id varchar primary key,
+    application_id bigint primary key,
     client_id      bigint references client (client_id),
     credit_id      bigint references credit (credit_id),
     status         varchar,

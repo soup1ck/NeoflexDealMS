@@ -21,11 +21,11 @@ public class DealController {
     }
 
     @PutMapping(value = "/offer")
-    public void updateApplication(@RequestBody LoanOfferDTO loanOfferDTO){
+    public void updateApplication(@RequestBody LoanOfferDTO loanOfferDTO) {
         dealService.updateApplication(loanOfferDTO);
     }
 
     @PutMapping(value = "/calculate/{applicationId}")
-    public void calculateRequest(@PathVariable Long applicationId){
+    public void calculateRequest(@PathVariable Long applicationId) {
     }
 }

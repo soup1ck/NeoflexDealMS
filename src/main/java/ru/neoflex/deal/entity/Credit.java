@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 import ru.neoflex.deal.data.jsonb.PaymentScheduleJsonb;
 
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
+@ToString
 @NoArgsConstructor
 public class Credit {
 

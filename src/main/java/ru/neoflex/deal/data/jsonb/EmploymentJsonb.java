@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Setter
 public class EmploymentJsonb {
 
-    private Long employmentId;
     private String status;
     private String employerInn;
     private BigDecimal salary;

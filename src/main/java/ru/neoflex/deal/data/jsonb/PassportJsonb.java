@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Setter
 public class PassportJsonb {
 
-    private Long passportId;
     private String series;
     private String number;
     private String issueBranch;

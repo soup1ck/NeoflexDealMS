@@ -2,6 +2,7 @@ package ru.neoflex.deal.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.neoflex.deal.data.dto.FinishRegistrationRequestDTO;
 import ru.neoflex.deal.data.dto.LoanApplicationRequestDTO;
 import ru.neoflex.deal.data.dto.LoanOfferDTO;
 import ru.neoflex.deal.service.DealService;
@@ -26,6 +27,8 @@ public class DealController {
     }
 
     @PutMapping(value = "/calculate/{applicationId}")
-    public void calculateRequest(@PathVariable Long applicationId) {
+    public void calculateRequest(@RequestBody FinishRegistrationRequestDTO finishRegistrationRequestDTO,
+                                 @PathVariable Long applicationId) {
+        dealService.handleFinishRequest(finishRegistrationRequestDTO, applicationId);
     }
 }

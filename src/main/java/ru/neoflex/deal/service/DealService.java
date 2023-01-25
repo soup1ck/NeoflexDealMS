@@ -83,5 +83,6 @@ public class DealService {
         scoringDataDTO.setIsInsuranceEnabled(appliedOffer.getIsInsuranceEnabled());
         scoringDataDTO.setIsSalaryClient(appliedOffer.getIsSalaryClient());
         System.out.println(scoringDataDTO.toString());
+        conveyorUtils.calculate(scoringDataDTO);
     }
 }

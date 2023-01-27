@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet author="Vladimir Grakov" id="1">
+        <createTable tableName="client">
+            <column name="client_id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="last_name" type="varchar"/>
+            <column name="first_name" type="varchar"/>
+            <column name="middle_name" type="varchar"/>
+            <column name="birth_date" type="date"/>
+            <column name="email" type="varchar"/>
+            <column name="gender" type="varchar"/>
+            <column name="marital_status" type="varchar"/>
+            <column name="dependent_amount" type="int"/>
+            <column name="passport" type="jsonb"/>
+            <column name="employment" type="jsonb"/>
+            <column name="account" type="varchar"/>
+        </createTable>
+
+        <createTable tableName="credit">
+            <column name="credit_id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="amount" type="decimal"/>
+            <column name="term" type="int"/>
+            <column name="monthly_payment" type="decimal"/>
+            <column name="rate" type="decimal"/>
+            <column name="psk" type="decimal"/>
+            <column name="payment_schedule" type="jsonb"/>
+            <column name="insurance_enable" type="boolean"/>
+            <column name="salary_client" type="boolean"/>
+            <column name="credit_status" type="varchar"/>
+        </createTable>
+
+        <createTable tableName="application">
+            <column name="application_id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints foreignKeyName="fk_application_client" references="client(client_id)"/>
+            </column>
+            <column name="credit_id" type="bigint">
+                <constraints foreignKeyName="fk_application_credit" references="credit(credit_id)"/>
+            </column>
+            <column name="status" type="varchar"/>
+            <column name="creation_date" type="timestamp"/>
+            <column name="applied_offer" type="jsonb"/>
+            <column name="sign_date" type="timestamp"/>
+            <column name="ses_code" type="int"/>
+            <column name="status_history" type="jsonb"/>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="client"/>
+            <dropTable tableName="credit"/>
+            <dropTable tableName="application"/>
+        </rollback>
+
+    </changeSet>
+</databaseChangeLog>

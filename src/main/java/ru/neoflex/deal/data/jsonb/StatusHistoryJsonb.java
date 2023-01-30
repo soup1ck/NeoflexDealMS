@@ -1,14 +1,10 @@
 package ru.neoflex.deal.data.jsonb;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Timestamp;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class StatusHistoryJsonb {
 
     private String status;

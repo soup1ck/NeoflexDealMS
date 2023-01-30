@@ -14,6 +14,7 @@ public interface ApplicationRepository extends JpaRepository<Application, String
 
     Application getApplicationByApplicationId(Long applicationId);
 
+    //todo убрать?
     @Query("update Application set status=:status, appliedOffer=:appliedOffer where applicationId=:id")
     void updateApplication(@Param("status") String status, @Param("appliedOffer") LoanOfferJsonb loanOfferJsonb,
                            @Param("id") Long applicationId);

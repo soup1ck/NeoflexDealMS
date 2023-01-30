@@ -36,7 +36,7 @@ public class ApplicationService {
         Application application = new Application();
         List<StatusHistoryJsonb> statusHistoryJsonbList = new ArrayList<>();
         application.setClient(clientInDb);
-        StatusHistoryJsonb statusHistoryJsonb = createStatusHistoryJsonb(ApplicationStatus.APPROVED,
+        StatusHistoryJsonb statusHistoryJsonb = createStatusHistoryJsonb(ApplicationStatus.PREAPPROVAL,
                 ChangeType.AUTOMATIC);
         statusHistoryJsonbList.add(statusHistoryJsonb);
         application.setStatusHistory(statusHistoryJsonbList);

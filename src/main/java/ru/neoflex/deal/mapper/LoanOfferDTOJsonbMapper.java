@@ -7,5 +7,5 @@ import ru.neoflex.deal.data.jsonb.LoanOfferJsonb;
 @Mapper(componentModel = "spring")
 public interface LoanOfferDTOJsonbMapper {
 
-    LoanOfferJsonb loanOfferDTOToJsonb(LoanOfferDTO loanOfferDTO);
+    LoanOfferJsonb toJsonb(LoanOfferDTO loanOfferDTO);
 }

@@ -23,7 +23,7 @@ public class DealController {
     @Operation(summary = "Получение предложений по кредиту, занесение данных в таблицы")
     @PostMapping(value = "/application")
     public List<LoanOfferDTO> insertClient(@RequestBody LoanApplicationRequestDTO loanApplicationRequestDTO) {
-        return dealService.handleLoanRequest(loanApplicationRequestDTO);
+        return dealService.getLoanOffers(loanApplicationRequestDTO);
     }
 
     @Operation(summary = "Установка принятого предложения")
@@ -36,6 +36,6 @@ public class DealController {
     @PutMapping(value = "/calculate/{applicationId}")
     public void calculateRequest(@RequestBody FinishRegistrationRequestDTO finishRegistrationRequestDTO,
                                  @PathVariable Long applicationId) {
-        dealService.handleFinishRequest(finishRegistrationRequestDTO, applicationId);
+        dealService.calculateCredit(finishRegistrationRequestDTO, applicationId);
     }
 }

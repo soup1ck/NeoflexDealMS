@@ -6,8 +6,8 @@ import ru.neoflex.deal.data.dto.LoanApplicationRequestDTO;
 import ru.neoflex.deal.entity.Client;
 
 @Mapper(componentModel = "spring")
-public interface LoanApplicationRequestClientMapper {
+public interface LoanApplicationRequestMapper {
 
     @Mapping(target = "clientId", ignore = true)
-    Client loanRequestToClient(LoanApplicationRequestDTO loanApplicationRequestDTO);
+    Client toClient(LoanApplicationRequestDTO loanApplicationRequestDTO);
 }

@@ -12,6 +12,7 @@ import ru.neoflex.deal.data.jsonb.LoanOfferJsonb;
 import ru.neoflex.deal.data.jsonb.StatusHistoryJsonb;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -55,5 +56,5 @@ public class Application {
 
     @Column(name = "status_history")
     @Type(JsonBinaryType.class)
-    private StatusHistoryJsonb statusHistory;
+    private List<StatusHistoryJsonb> statusHistory;
 }

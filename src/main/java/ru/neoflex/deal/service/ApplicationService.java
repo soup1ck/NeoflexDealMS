@@ -62,10 +62,11 @@ public class ApplicationService {
     }
 
     private StatusHistoryJsonb createStatusHistoryJsonb(ApplicationStatus applicationStatus, ChangeType changeType) {
-        ApplicationStatusHistoryDTO statusHistoryDTO = new ApplicationStatusHistoryDTO();
-        statusHistoryDTO.setStatus(applicationStatus);
-        statusHistoryDTO.setTime(LocalDateTime.now());
-        statusHistoryDTO.setChangeType(changeType);
+        ApplicationStatusHistoryDTO statusHistoryDTO = ApplicationStatusHistoryDTO.builder()
+                .status(applicationStatus)
+                .changeType(changeType)
+                .time(LocalDateTime.now())
+                .build();
         StatusHistoryJsonb statusHistoryJsonb = statusHistoryMapper.toJsonb(statusHistoryDTO);
         return statusHistoryJsonb;
     }

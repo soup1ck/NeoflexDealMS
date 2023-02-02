@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import ru.neoflex.deal.data.dto.FinishRegistrationRequestDTO;
 import ru.neoflex.deal.data.dto.ScoringDataDTO;
 import ru.neoflex.deal.data.jsonb.LoanOfferJsonb;
-import ru.neoflex.deal.data.jsonb.PassportJsonb;
 import ru.neoflex.deal.entity.Client;
 import ru.neoflex.deal.mapper.FinishRegistrationRequestMapper;
 

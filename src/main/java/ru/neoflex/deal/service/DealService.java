@@ -3,6 +3,7 @@ package ru.neoflex.deal.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.neoflex.deal.data.dto.FinishRegistrationRequestDTO;
 import ru.neoflex.deal.data.dto.LoanApplicationRequestDTO;
 import ru.neoflex.deal.data.dto.LoanOfferDTO;
@@ -25,6 +26,7 @@ public class DealService {
     private final LoanOfferService loanOfferService;
     private final FeignControllerClient feignControllerClient;
 
+    @Transactional
     public List<LoanOfferDTO> getLoanOffers(LoanApplicationRequestDTO loanApplicationRequestDTO) {
         log.info("Начат процесс обработки LoanRequest {}", loanApplicationRequestDTO);
         Client clientInDb = clientService.createClientInDb(loanApplicationRequestDTO);
@@ -40,6 +42,7 @@ public class DealService {
         applicationService.updateApplication(loanOfferDTO);
     }
 
+    @Transactional
     public void calculateCredit(FinishRegistrationRequestDTO finishRegistrationRequestDTO,
                                 Long applicationId) {
         log.info("Процесс обработки FinishRequest начат, finishRequest: {} , applicationId: {}",

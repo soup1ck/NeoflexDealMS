@@ -3,6 +3,7 @@ package ru.neoflex.deal.utils;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import ru.neoflex.deal.data.dto.CreditDTO;
 import ru.neoflex.deal.data.dto.LoanApplicationRequestDTO;
 import ru.neoflex.deal.data.dto.LoanOfferDTO;
 import ru.neoflex.deal.data.dto.ScoringDataDTO;
@@ -16,5 +17,5 @@ public interface FeignControllerClient {
     List<LoanOfferDTO> getLoanOffers(@RequestBody LoanApplicationRequestDTO loanApplicationRequestDTO);
 
     @PostMapping(value = "/calculation")
-    void calculate(@RequestBody ScoringDataDTO scoringDataDTO);
+    CreditDTO calculate(@RequestBody ScoringDataDTO scoringDataDTO);
 }

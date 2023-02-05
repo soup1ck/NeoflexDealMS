@@ -10,6 +10,7 @@ import ru.neoflex.deal.data.enums.ChangeType;
 import ru.neoflex.deal.data.jsonb.StatusHistoryJsonb;
 import ru.neoflex.deal.entity.Application;
 import ru.neoflex.deal.entity.Client;
+import ru.neoflex.deal.entity.Credit;
 import ru.neoflex.deal.mapper.LoanOfferDTOJsonbMapper;
 import ru.neoflex.deal.mapper.StatusHistoryMapper;
 import ru.neoflex.deal.repository.ApplicationRepository;
@@ -59,6 +60,21 @@ public class ApplicationService {
         applicationInDb.setAppliedOffer(loanOfferMapper.toJsonb(loanOfferDTO));
         Application updatedApp = applicationRepository.save(applicationInDb);
         log.info("Application обновлен и сохранен в бд {}", updatedApp);
+    }
+
+    public void updateApplicationStatusHistory(Application application,
+                                               ApplicationStatus applicationStatus, ChangeType changeType){
+        List<StatusHistoryJsonb> statusHistory = application.getStatusHistory();
+        StatusHistoryJsonb statusHistoryJsonb = createStatusHistoryJsonb(applicationStatus, changeType);
+        statusHistory.add(statusHistoryJsonb);
+        application.setStatusHistory(statusHistory);
+        application.setStatus(statusHistoryJsonb.getStatus());
+        Application updatedApp = applicationRepository.save(application);
+    }
+
+    public void updateApplicationWithCredit(Application application, Credit credit){
+        application.setCredit(credit);
+        applicationRepository.save(application);
     }
 
     private StatusHistoryJsonb createStatusHistoryJsonb(ApplicationStatus applicationStatus, ChangeType changeType) {

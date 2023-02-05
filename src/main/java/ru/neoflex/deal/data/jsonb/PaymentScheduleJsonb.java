@@ -1,15 +1,11 @@
 package ru.neoflex.deal.data.jsonb;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class PaymentScheduleJsonb {
 
     private Integer number;

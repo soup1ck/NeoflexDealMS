@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/deal
+    username: postgres
+    password: vova200201
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+  kafka:
+    producer:
+      properties:
+        spring:
+          json:
+            type:
+              mapping: EmailMessageDTO:ru.neoflex.deal.data.dto.EmailMessageDTO
+server:
+  port: 8081

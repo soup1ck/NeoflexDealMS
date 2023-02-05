@@ -10,6 +10,7 @@ import org.hibernate.annotations.Type;
 import ru.neoflex.deal.data.jsonb.PaymentScheduleJsonb;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
@@ -43,7 +44,7 @@ public class Credit {
 
     @Column(name = "payment_schedule")
     @Type(JsonBinaryType.class)
-    private PaymentScheduleJsonb paymentSchedule;
+    private List<PaymentScheduleJsonb> paymentSchedule;
 
     @Column(name = "insurance_enable")
     private Boolean insuranceEnable;

@@ -28,7 +28,7 @@ public class ClientService {
     private final PassportMapper passportMapper;
     private final EmploymentMapper employmentMapper;
 
-    public Client createClientInDb(LoanApplicationRequestDTO loanApplicationRequestDTO){
+    public Client createClientInDb(LoanApplicationRequestDTO loanApplicationRequestDTO) {
         log.info("Начат процесс создания Клиента");
         Client client = loanApplicationRequestMapper.toClient(loanApplicationRequestDTO);
         PassportDTO passportDTO = new PassportDTO();
@@ -42,7 +42,7 @@ public class ClientService {
     }
 
     public Client updateClient(FinishRegistrationRequestDTO finishRegistrationRequestDTO,
-                                  Long applicationId){
+                               Long applicationId) {
         log.info("Процесс обновления Клиента начат");
         Application applicationInDb = applicationRepository.getApplicationByApplicationId(applicationId);
         Client clientInDb = applicationInDb.getClient();

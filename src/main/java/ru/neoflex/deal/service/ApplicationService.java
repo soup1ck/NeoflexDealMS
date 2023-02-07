@@ -63,7 +63,7 @@ public class ApplicationService {
     }
 
     public void updateApplicationStatusHistory(Application application,
-                                               ApplicationStatus applicationStatus, ChangeType changeType){
+                                               ApplicationStatus applicationStatus, ChangeType changeType) {
         List<StatusHistoryJsonb> statusHistory = application.getStatusHistory();
         StatusHistoryJsonb statusHistoryJsonb = createStatusHistoryJsonb(applicationStatus, changeType);
         statusHistory.add(statusHistoryJsonb);
@@ -72,7 +72,7 @@ public class ApplicationService {
         Application updatedApp = applicationRepository.save(application);
     }
 
-    public void updateApplicationWithCredit(Application application, Credit credit){
+    public void updateApplicationWithCredit(Application application, Credit credit) {
         application.setCredit(credit);
         applicationRepository.save(application);
     }

@@ -15,12 +15,12 @@ public class CreditService {
     private final CreditRepository creditRepository;
     private final CreditMapper creditMapper;
 
-    public Credit saveCreditInDb(Credit credit){
+    public Credit saveCreditInDb(Credit credit) {
         Credit creditInDb = creditRepository.save(credit);
         return creditInDb;
     }
 
-    public Credit getCredit(CreditDTO creditDTO, CreditStatus creditStatus){
+    public Credit getCredit(CreditDTO creditDTO, CreditStatus creditStatus) {
         Credit credit = creditMapper.toCredit(creditDTO);
         credit.setCreditStatus(creditStatus.toString());
         return credit;

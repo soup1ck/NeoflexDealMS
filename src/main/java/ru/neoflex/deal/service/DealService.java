@@ -67,4 +67,18 @@ public class DealService {
         log.info("Процесс обработки FinishRequest  закончен");
         kafkaService.sendToCreateDocumentsTopic(applicationId);
     }
+
+    public void sendRequestForDocument(Long applicationId) {
+        Application application = applicationService.getApplicationByApplicationId(applicationId);
+        applicationService.updateApplicationStatusHistory(application,
+                ApplicationStatus.PREPARE_DOCUMENTS, ChangeType.AUTOMATIC);
+        kafkaService.sendToSendDocumentsTopic(applicationId);
+    }
+
+    public void updateApplicationStatus(Long applicationId, ApplicationStatus applicationStatus,
+                                        ChangeType changeType) {
+        Application application = applicationService.getApplicationByApplicationId(applicationId);
+        applicationService.updateApplicationStatusHistory(application,
+                applicationStatus, changeType);
+    }
 }

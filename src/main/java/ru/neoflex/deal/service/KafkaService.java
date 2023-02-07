@@ -11,7 +11,7 @@ import ru.neoflex.deal.entity.Application;
 @RequiredArgsConstructor
 public class KafkaService {
 
-    private final KafkaTemplate<String, Object> template;
+    private final KafkaTemplate<String, EmailMessageDTO> template;
     private final ApplicationService applicationService;
 
     public void sendToFinishRegistrationTopic(Long applicationId) {

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.neoflex.deal.data.dto.FinishRegistrationRequestDTO;
 import ru.neoflex.deal.data.dto.LoanApplicationRequestDTO;
 import ru.neoflex.deal.data.dto.LoanOfferDTO;
+import ru.neoflex.deal.data.enums.ApplicationStatus;
+import ru.neoflex.deal.data.enums.ChangeType;
 import ru.neoflex.deal.entity.Application;
 import ru.neoflex.deal.service.DealService;
 import ru.neoflex.deal.service.KafkaService;
@@ -45,6 +47,7 @@ public class DealController {
 
     @PostMapping(value = "/document/{applicationId}/send")
     public void sendRequestForDocument(@PathVariable Long applicationId) {
+        dealService.sendRequestForDocument(applicationId);
     }
 
     @PostMapping(value = "/document/{applicationId}/sign")
@@ -53,6 +56,12 @@ public class DealController {
 
     @PostMapping(value = "/document/{applicationId}/code")
     public void signDocument(@PathVariable Long applicationId) {
+    }
+
+    @PutMapping(value = "/admin/application/{applicationId}/status")
+    public void updateApplicationStatus(@PathVariable Long applicationId){
+        dealService.updateApplicationStatus(applicationId, ApplicationStatus.DOCUMENT_CREATED,
+                ChangeType.AUTOMATIC);
     }
 
     @GetMapping(value = "/admin/application/{applicationId}")

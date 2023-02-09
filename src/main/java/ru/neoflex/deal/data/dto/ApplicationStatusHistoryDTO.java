@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @ToString
 public class ApplicationStatusHistoryDTO {
 
-      private ApplicationStatus status;
-      private LocalDateTime time;
-      private ChangeType changeType;
+    private ApplicationStatus status;
+    private LocalDateTime time;
+    private ChangeType changeType;
 }

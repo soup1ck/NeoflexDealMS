@@ -1,6 +1,6 @@
 package ru.neoflex.deal.data.jsonb;
 
-import lombok.*;
+import lombok.Data;
 
 import java.sql.Timestamp;
 

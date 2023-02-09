@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.neoflex.deal.entity.Credit;
 
 @Repository
-public interface CreditRepository extends JpaRepository<Credit,Long> {
+public interface CreditRepository extends JpaRepository<Credit, Long> {
 }

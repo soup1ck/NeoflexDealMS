@@ -4,11 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.neoflex.deal.data.dto.CreditDTO;
-import ru.neoflex.deal.data.dto.FinishRegistrationRequestDTO;
-import ru.neoflex.deal.data.dto.LoanApplicationRequestDTO;
-import ru.neoflex.deal.data.dto.LoanOfferDTO;
-import ru.neoflex.deal.data.dto.ScoringDataDTO;
+import ru.neoflex.deal.data.dto.*;
 import ru.neoflex.deal.data.enums.ApplicationStatus;
 import ru.neoflex.deal.data.enums.ChangeType;
 import ru.neoflex.deal.data.enums.CreditStatus;
@@ -32,6 +28,7 @@ public class DealService {
     private final CreditService creditService;
     private final FeignControllerClient feignControllerClient;
     private final KafkaService kafkaService;
+    private final GenerateSesCodeService generateSesCodeService;
 
     @Transactional
     public List<LoanOfferDTO> getLoanOffers(LoanApplicationRequestDTO loanApplicationRequestDTO) {
@@ -48,6 +45,24 @@ public class DealService {
     public void updateApplication(LoanOfferDTO loanOfferDTO) {
         applicationService.updateApplication(loanOfferDTO);
         kafkaService.sendToFinishRegistrationTopic(loanOfferDTO.getApplicationId());
+    }
+
+    public void updateApplicationSesCode(Long applicationId) {
+        int sesCode = generateSesCodeService.getRandomNumberInts();
+        applicationService.updateApplicationSesCode(applicationId, sesCode);
+        kafkaService.sendToSendSesTopic(applicationId);
+    }
+
+    public void verifySesCode(Long applicationId, Integer code){
+        Application application = applicationService.getApplicationByApplicationId(applicationId);
+        Integer sesCode = application.getSesCode();
+        if(sesCode.equals(code)){
+            applicationService.updateApplicationStatusHistory(application, ApplicationStatus.DOCUMENT_SIGNED,
+                    ChangeType.AUTOMATIC);
+            applicationService.updateApplicationStatusHistory(application, ApplicationStatus.CREDIT_ISSUED,
+                    ChangeType.AUTOMATIC);
+            kafkaService.sendToCreditIssuedTopic(applicationId);
+        }
     }
 
     @Transactional

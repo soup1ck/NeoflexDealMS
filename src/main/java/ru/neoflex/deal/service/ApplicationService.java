@@ -32,6 +32,10 @@ public class ApplicationService {
         return applicationRepository.getApplicationByApplicationId(applicationId);
     }
 
+    public List<Application> getAllApplications() {
+        return applicationRepository.findAll();
+    }
+
     public Application createAppInDb(Client clientInDb) {
         log.info("Начат процесс создания Заявки");
         Application application = new Application();
@@ -74,6 +78,12 @@ public class ApplicationService {
 
     public void updateApplicationWithCredit(Application application, Credit credit) {
         application.setCredit(credit);
+        applicationRepository.save(application);
+    }
+
+    public void updateApplicationSesCode(Long applicationId, Integer sesCode) {
+        Application application = applicationRepository.getApplicationByApplicationId(applicationId);
+        application.setSesCode(sesCode);
         applicationRepository.save(application);
     }
 

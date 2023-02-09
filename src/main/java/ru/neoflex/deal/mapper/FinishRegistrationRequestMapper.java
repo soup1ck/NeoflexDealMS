@@ -20,4 +20,11 @@ public interface FinishRegistrationRequestMapper {
     @Mapping(source = "client.passport.issueBranch", target = "passportIssueBranch")
     ScoringDataDTO toScoringData(FinishRegistrationRequestDTO finishRegistrationRequestDTO,
                                  Client client);
+
+    @Mapping(source = "finishRegistrationRequestDTO.gender", target = "gender")
+    @Mapping(source = "finishRegistrationRequestDTO.maritalStatus", target = "maritalStatus")
+    @Mapping(source = "finishRegistrationRequestDTO.dependentAmount", target = "dependentAmount")
+    @Mapping(source = "finishRegistrationRequestDTO.employment", target = "employment")
+    @Mapping(source = "finishRegistrationRequestDTO.account", target = "account")
+    Client toClient(FinishRegistrationRequestDTO finishRegistrationRequestDTO);
 }

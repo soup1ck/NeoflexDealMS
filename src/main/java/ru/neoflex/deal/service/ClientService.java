@@ -53,6 +53,10 @@ public class ClientService {
         EmploymentDTO employmentDTO = finishRegistrationRequestDTO.getEmployment();
         EmploymentJsonb employmentJsonb = employmentMapper.DTOToJsonb(employmentDTO);
         clientInDb.setEmployment(employmentJsonb);
+        clientInDb.setGender(finishRegistrationRequestDTO.getGender().toString());
+        clientInDb.setAccount(finishRegistrationRequestDTO.getAccount());
+        clientInDb.setMaritalStatus(finishRegistrationRequestDTO.getMaritalStatus().toString());
+        clientInDb.setDependentAmount(finishRegistrationRequestDTO.getDependentAmount());
         Client updatedClient = clientRepository.save(clientInDb);
         log.info("Процесс обновления Клиента завершен, обновленный Клиент: {}", updatedClient);
         return updatedClient;
